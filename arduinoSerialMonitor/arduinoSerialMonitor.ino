@@ -9,8 +9,9 @@
 #define LCD2 19
 SoftwareSerial BT(2, 3);
 
+char data = 0;
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-char data=0;
+
 void setup() {
   BT.begin(9600);
   Serial.begin(9600);
@@ -20,15 +21,16 @@ void setup() {
 }
 
 void loop() {
-  if (BT.available()>0) {
-    data=BT.read();
-  }
-  if (data=='a'){
-    digitalWrite(fanpin1, HIGH);
-    digitalWrite(fanpin2, LOW);
-  }
-  if (data=='b'){
-    digitalWrite(fanpin1, LOW);
-    digitalWrite(fanpin2, LOW);
+  if (BT.available()) {
+    Serial.write(BT.read());
+    data = BT.read();
+    if (data == 'a') {
+      digitalWrite(fanpin1, LOW);
+      digitalWrite(fanpin2, HIGH);
+    }
+    if (data == 'd') {
+      digitalWrite(fanpin1, LOW);
+      digitalWrite(fanpin2, LOW);
+    }
   }
 }
