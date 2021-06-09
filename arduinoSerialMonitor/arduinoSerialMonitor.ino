@@ -18,19 +18,9 @@ void setup() {
   pinMode(fanpin1, OUTPUT);
   pinMode(fanpin2, OUTPUT);
   lcd.begin();
+  Serial.begin(9600);
 }
 
 void loop() {
-  if (BT.available()) {
-    Serial.write(BT.read());
-    data = BT.read();
-    if (data == 'a') {
-      digitalWrite(fanpin1, LOW);
-      digitalWrite(fanpin2, HIGH);
-    }
-    if (data == 'd') {
-      digitalWrite(fanpin1, LOW);
-      digitalWrite(fanpin2, LOW);
-    }
-  }
+  analogWrite(
 }
