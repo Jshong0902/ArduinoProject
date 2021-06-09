@@ -20,17 +20,17 @@ void setup() {
   lcd.begin();
 }
 
-void loop() { 
-  if (BT.available() > 0) {
+void loop() {
+  if (BT.available()) {
     Serial.write(BT.read());
-    data = BT.read();  if (data == 'a') {
-    digitalWrite(fanpin1, LOW);
-    digitalWrite(fanpin2, HIGH);
+    data = BT.read();
+    if (data == 'a') {
+      digitalWrite(fanpin1, LOW);
+      digitalWrite(fanpin2, HIGH);
+    }
+    if (data == 'd') {
+      digitalWrite(fanpin1, LOW);
+      digitalWrite(fanpin2, LOW);
+    }
   }
-  if (data == 'd') {
-    digitalWrite(fanpin1, LOW);
-    digitalWrite(fanpin2, LOW);
-  }
-  }
-
 }
