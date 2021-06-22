@@ -19,7 +19,6 @@ void setup() {
   lcd.begin();
   lcd.clear();
   lcd.backlight();
-
 }
 
 void loop() {
